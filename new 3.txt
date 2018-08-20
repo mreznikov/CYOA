@@ -1,0 +1,6 @@
+event_id
+description
+option
+option_spell
+battle
+item

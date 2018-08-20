@@ -1,0 +1,122 @@
+
+
+
+enemy.0 {'value': 'Первый дровосек;8;4', 'type': 'string'}
+enemy.1 {'value': 'Второй дровосек;6;7', 'type': 'string'}
+spells.allowed {'value': 'copy', 'type': 'string'}
+enemy.0 {'value': 'Первая летучая мышь;10;4;damage:1', 'type': 'string'}
+enemy.1 {'value': 'Вторая летучая мышь;8;8;damage:1', 'type': 'string'}
+enemy.2 {'value': 'Третья летучая мышь;8;6;damage:1', 'type': 'string'}
+spells.allowed {'value': 'agility;weakness;copy', 'type': 'string'}
+enemy.0 {'value': 'Гаррас;9;8', 'type': 'string'}
+enemy.0 {'value': 'Первый рыцарь;10;10', 'type': 'string'}
+enemy.1 {'value': 'Второй рыцарь;10;10', 'type': 'string'}
+your.agility {'value': '+1'}
+details {'value': 'winAfterDefeatingOne', 'type': 'string'}
+enemy.0 {'value': 'Дракон;10;6', 'type': 'string'}
+enemy.0 {'value': 'Первый гаррас;7;10;loyalty:12', 'type': 'string'}
+enemy.1 {'value': 'Второй гаррас;7;6;loyalty:8', 'type': 'string'}
+spells.allowed {'value': 'agility;weakness;copy', 'type': 'string'}
+enemy.0 {'value': 'Дракон;10;6', 'type': 'string'}
+enemy.0 {'value': 'Начальник стражи;9;6', 'type': 'string'}
+spells.allowed {'value': 'agility;weakness;copy', 'type': 'string'}
+enemy.0 {'value': 'Вампир;11;14', 'type': 'string'}
+enemy.0 {'value': 'Рыцарь;10;10', 'type': 'string'}
+your.agility {'value': '-1'}
+enemy.0 {'value': 'Первый разбойник;9;4', 'type': 'string'}
+enemy.1 {'value': 'Второй разбойник;7;8', 'type': 'string'}
+enemy.2 {'value': 'Арбалетчик;6;6', 'type': 'string'}
+spells.allowed {'value': 'agility;weakness;copy', 'type': 'string'}
+enemy.0 {'value': 'Первый рыцарь;10;10', 'type': 'string'}
+enemy.1 {'value': 'Второй рыцарь;10;10', 'type': 'string'}
+your.agility {'value': '-1'}
+details {'value': 'winAfterDefeatingOne', 'type': 'string'}
+enemy.0 {'value': 'Гаррас;7;9;loyalty:12', 'type': 'string'}
+enemy.0 {'value': 'Обезьяна;10;10', 'type': 'string'}
+spells.allowed {'value': 'agility;weakness;copy', 'type': 'string'}
+enemy.0 {'value': 'Барлад Дэрт;14;12', 'type': 'string'}
+enemy.0 {'value': 'Призрак;10;8', 'type': 'string'}
+enemy.0 {'value': 'Дух мёртвых;10;12', 'type': 'string'}
+escapePage {'value': '83'}
+enemy.0 {'value': 'Дракон;12;8', 'type': 'string'}
+spells.allowed {'value': 'copy', 'type': 'string'}
+details {'value': 'winAfterInjureEnemyTimes:2', 'type': 'string'}
+enemy.0 {'value': 'Гиена;8;6', 'type': 'string'}
+enemy.0 {'value': 'Гаррас;7;6;loyalty:8', 'type': 'string'}
+spells.allowed {'value': 'copy', 'type': 'string'}
+enemy.0 {'value': 'Пантера;9;5', 'type': 'string'}
+your.hitForce {'value': '-1'}
+spells.allowed {'value': 'agility;weakness;copy', 'type': 'string'}
+enemy.0 {'value': 'Рыцарь;10;10', 'type': 'string'}
+your.hitForce {'value': '-2'}
+enemy.0 {'value': 'Рыцарь;10;10', 'type': 'string'}
+your.agility {'value': '-1'}
+enemy.0 {'value': 'Первый рыцарь;10;10', 'type': 'string'}
+enemy.1 {'value': 'Второй рыцарь;10;10', 'type': 'string'}
+your.hitForce {'value': '-2'}
+your.agility {'value': '-1'}
+details {'value': 'winAfterDefeatingOne', 'type': 'string'}
+enemy.0 {'value': 'Дракон;12;8', 'type': 'string'}
+spells.allowed {'value': 'copy', 'type': 'string'}
+details {'value': 'winAfterInjureEnemyTimes:2', 'type': 'string'}
+enemy.0 {'value': 'Водяной;9;8;damage:3', 'type': 'string'}
+escapePage {'value': '504'}
+enemy.0 {'value': 'Первый гаррас;8;8', 'type': 'string'}
+enemy.1 {'value': 'Второй гаррас;7;8', 'type': 'string'}
+your.hitForce {'value': '-1'}
+spells.allowed {'value': 'agility;weakness;copy', 'type': 'string'}
+enemy.0 {'value': 'Аллигатор;10;10', 'type': 'string'}
+spells.allowed {'value': 'agility;weakness;fire', 'type': 'string'}
+enemy.0 {'value': 'Тролль;9;16', 'type': 'string'}
+enemy.0 {'value': 'Дракон;12;8', 'type': 'string'}
+spells.allowed {'value': 'copy', 'type': 'string'}
+your.agility {'value': '+2'}
+details {'value': 'winAfterInjureEnemyTimes:2', 'type': 'string'}
+enemy.0 {'value': 'Первый человек;8;8', 'type': 'string'}
+enemy.1 {'value': 'Первый человек;6;12', 'type': 'string'}
+enemy.0 {'value': 'Рыцарь;12;10', 'type': 'string'}
+enemy.0 {'value': 'Водяной;9;8;damage:3', 'type': 'string'}
+your.agility {'value': '+2'}
+escapePage {'value': '504'}
+enemy.0 {'value': 'Первый гаррас;10;8;demoralizeComradesOnDeathInRound:4', 'type': 'string'}
+enemy.1 {'value': 'Второй гаррас;8;8;loyalty:10;roundsSkip:4', 'type': 'string'}
+enemy.2 {'value': 'Третий гаррас;8;8;loyalty:10;roundsSkip:4', 'type': 'string'}
+spells.allowed {'value': 'agility;weakness;copy', 'type': 'string'}
+enemy.0 {'value': 'Гаррас;7;8', 'type': 'string'}
+enemy.0 {'value': 'Торговец;6;12;damage:3', 'type': 'string'}
+enemy.0 {'value': 'Оборотень;9;10', 'type': 'string'}
+spells.allowed {'value': 'copy', 'type': 'string'}
+enemy.0 {'value': 'Медведица;8;10', 'type': 'string'}
+your.hitForce {'value': '-1'}
+spells.allowed {'value': 'agility;weakness;copy', 'type': 'string'}
+enemy.0 {'value': 'Первый гаррас;8;10', 'type': 'string'}
+enemy.1 {'value': 'Второй гаррас;6;8', 'type': 'string'}
+spells.allowed {'value': 'agility;weakness;copy', 'type': 'string'}
+enemy.0 {'value': 'Гаррас;4;8', 'type': 'string'}
+enemy.1 {'value': 'Второй Гаррас;8;10;skipUntilAllDefeated', 'type': 'string'}
+enemy.0 {'value': 'Командор;11;14', 'type': 'string'}
+enemy.0 {'value': 'Пантера;9;5', 'type': 'string'}
+your.hitForce {'value': '-1'}
+spells.allowed {'value': 'agility;weakness;copy', 'type': 'string'}
+enemy.0 {'value': 'Лесовичок;6;8;damage:1', 'type': 'string'}
+enemy.0 {'value': 'Рыцарь;10;10', 'type': 'string'}
+enemy.0 {'value': 'Повар;8;10;loyalty:12', 'type': 'string'}
+enemy.0 {'value': 'Пантера;9;10', 'type': 'string'}
+spells.allowed {'value': 'copy', 'type': 'string'}
+enemy.0 {'value': 'Пантера;9;10', 'type': 'string'}
+enemy.0 {'value': 'Первый рыцарь;10;10', 'type': 'string'}
+enemy.1 {'value': 'Второй рыцарь;10;10', 'type': 'string'}
+enemy.2 {'value': 'Третий рыцарь;10;10;roundsSkip:6', 'type': 'string'}
+enemy.0 {'value': 'Первый гаррас;9;6', 'type': 'string'}
+enemy.1 {'value': 'Второй гаррас;8;8;roundsSkip:3', 'type': 'string'}
+enemy.2 {'value': 'Третий гаррас;7;8;roundsSkip:3', 'type': 'string'}
+spells.allowed {'value': 'agility;weakness;copy', 'type': 'string'}
+enemy.0 {'value': 'Обезьяна;10;10', 'type': 'string'}
+enemy.0 {'value': 'Разбойник;7;8', 'type': 'string'}
+enemy.0 {'value': 'Лев;9;14', 'type': 'string'}
+enemy.0 {'value': 'Гарпия;10;12', 'type': 'string'}
+spells.allowed {'value': 'copy', 'type': 'string'}
+enemy.0 {'value': 'Гаррас;8;10;loyalty:11', 'type': 'string'}
+enemy.0 {'value': 'Второй Гаррас;7;8;loyalty:6', 'type': 'string'}
+escapePage {'value': '682'}
+enemy.0 {'value': 'Магистр;12;14', 'type': 'string'}
