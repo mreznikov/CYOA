@@ -12,6 +12,8 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "C:\Users\miloslav\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1598, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:/Users/miloslav/PycharmProjects/CYOA/app.py", line 34, in main
-    print(request.json['message_id'])
-KeyError: 'message_id'
+  File "C:/Users/miloslav/PycharmProjects/CYOA/app.py", line 73, in main
+    js = Get_Event_by_ID(conn, event_id, session_id, user_id, "1.0",message_id,description2)
+  File "C:\Users\miloslav\PycharmProjects\CYOA\API.py", line 61, in Get_Event_by_ID
+    if rows[0][5] != "":
+IndexError: list index out of range

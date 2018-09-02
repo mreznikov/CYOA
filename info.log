@@ -12,6 +12,6 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "C:\Users\miloslav\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1598, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:/Users/miloslav/PycharmProjects/CYOA/app.py", line 34, in main
-    print(request.json['message_id'])
-KeyError: 'message_id'
+  File "C:/Users/miloslav/PycharmProjects/CYOA/app.py", line 65, in main
+    conn.execute('''INSERT INTO USER_LOG (USER_ID,USER_DECISION) VALUES (?,?)''',(session_id,event_id))
+sqlite3.OperationalError: database is locked

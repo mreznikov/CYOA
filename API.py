@@ -27,7 +27,7 @@ def create_connection(db_file):
     return None
 
 
-def Get_Event_by_ID(conn,event_id,session_id,user_id,version,message_id):
+def Get_Event_by_ID(conn,event_id,session_id,user_id,version,message_id,description2):
     """
     Query all rows in the tasks table
     :param conn: the Connection object
@@ -35,6 +35,7 @@ def Get_Event_by_ID(conn,event_id,session_id,user_id,version,message_id):
     """
     cur = conn.cursor()
     query='SELECT * FROM EVENTS t1 LEFT JOIN ITEMSANDINFO t2 on t1.ID=t2.EVENT_ID LEFT JOIN ENEMIES t3 on t1.ID=t3.EVENT_ID WHERE t1.ID="'+event_id+'"'
+
     cur.execute(query)
 
     rows = cur.fetchall()
@@ -47,13 +48,21 @@ def Get_Event_by_ID(conn,event_id,session_id,user_id,version,message_id):
     js={}
 
     for row in rows:
-        button = { "title":row[1], "hide": "true"}
+        if rows[0][5] != "":
+            button = {"title": "далее", "hide": "true"}
+            buttons.append(button)
+            break
+        button = {"title" : row[1], "hide": "true"}
         buttons.append(button)
 
     if len(rows) == 0:
         text = ""
-    else:
+    elif description2 != 1:
         text = rows[0][4]
+    else:
+        text = rows[0][5]
+
+
 
     js={ "response": {
     "text":text,

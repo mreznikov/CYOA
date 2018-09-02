@@ -50,15 +50,27 @@ def main():
         message_id = request.json['session']['message_id']
     except:
         message_id = 1
+    try:
+        description2 = request.json['response']['buttons']['title']
+    except:
+        description2 = 1
+
 
     #print(event_id)
 
     if message_id==1:
         event_id="1"
 
+
+    conn.execute('''INSERT INTO USER_LOG (USER_ID,USER_DECISION) VALUES (?,?)''',(session_id,event_id))
+
+    if description2 !=1:
+        conn.execute('SELECT DECISION_OD FROM USER_LOG WHERE USER_ID = ? ORDER BY ID DESC LIMIT 1', (session_id))
+        event_id = conn.fetchone()[0]
+
     #print(conn, event_id, session_id, user_id, "1.0",message_id)
     with conn:
-        js = Get_Event_by_ID(conn, event_id, session_id, user_id, "1.0",message_id)
+        js = Get_Event_by_ID(conn, event_id, session_id, user_id, "1.0",message_id,description2)
 
     return Response(json.dumps(js,ensure_ascii=False).encode('utf8'))
 
