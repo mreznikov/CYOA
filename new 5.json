@@ -1,0 +1,20 @@
+{
+	u'session': {
+		u'skill_id': u'https: //cyoa-lquxkuxzxg.now.sh',
+		u'user_id': u'0.uthom09ufd',
+		u'message_id': 1,
+		u'session_id': u'3fbb26f7-7389-4473-ac8d-0c19bff3dc9f',
+		u'new': True
+	},
+	u'request': {
+		u'command': u'',
+		u'type': u'SimpleUtterance',
+		u'original_utterance': u''
+	},
+	u'version': u'1.0',
+	u'meta': {
+		u'locale': u'ru-RU',
+		u'timezone': u'Europe/Moscow',
+		u'client_id': u'yandex.station'
+	}
+}

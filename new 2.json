@@ -1,0 +1,20 @@
+  {
+	"session": {
+		"skill_id": "https: //cyoa-wyihchruwy.now.sh",
+		"user_id": "0.bm9rh0n7lb8",
+		"message_id": 1,
+		"session_id": "52121302-7793-4ed3-a49b-d6807d76877f",
+		"new": True
+	},
+	"request": {
+		"command": "",
+		"type": "SimpleUtterance",
+		"original_utterance": ""
+	},
+	"version": "1.0",
+	"meta": {
+		"locale": "ru-R",
+		"timezone": "Europe/Moscow",
+		"client_id": "yandex.station"
+	}
+}
