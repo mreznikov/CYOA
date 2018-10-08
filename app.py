@@ -1,11 +1,12 @@
 # coding: utf-8
-from API import create_connection, Get_Event_by_ID
+from API import *
 from flask import Flask
 from flask import Response
 from flask import request
 import logging
 from logging.handlers import RotatingFileHandler
 import json
+
 from flask import jsonify
 
 app = Flask(__name__)
@@ -25,54 +26,37 @@ def logTest():
 @app.route('/', methods=['POST'])
 
 def main():
+    options = []
 
+    # Получаем JSON Request от Алисы
     logging.info('Request: %r', request.json)
 
-    #event_id = request.args.get('id', default=1, type=str)
     database = "CYOA.db"
     conn = create_connection(database)
+    c = conn.cursor()
 
-    try:
-        event_id = request.json['request']['command']
-        if event_id == "" or event_id == "test":
-            event_id = "1"
-    except:
-        event_id = "1"
-    try:
-        session_id = request.json['session']['session_id']
-    except:
-        session_id = "0"
-    try:
-        user_id = request.json['session']['user_id']
-    except:
-        user_id = "0"
-    try:
-        message_id = request.json['session']['message_id']
-    except:
-        message_id = 1
-    try:
-        description2 = request.json['response']['buttons']['title']
-    except:
-        description2 = 1
+    # Забираем значения из JSON Request
+    RequestDict = Get_Request(conn,request)
 
+    # Проверяем качество запроса пользователя
+    response = RequestQualityCheck(conn,request)
 
-    #print(event_id)
+    # Логируем действия пользователя
 
-    if message_id==1:
-        event_id="1"
+    c.execute('''INSERT INTO USER_LOG (USER_ID,USER_DECISION) VALUES (?,?)''',
+              (RequestDict["session_id"], RequestDict["event_id"]))
 
+    # Получаем текст и опции
+    if response is None:
+        description, options = Get_Event_by_ID(conn, RequestDict)
+    else:
+        description = response
 
-    conn.execute('''INSERT INTO USER_LOG (USER_ID,USER_DECISION) VALUES (?,?)''',(session_id,event_id))
-
-    if description2 !=1:
-        conn.execute('SELECT DECISION_OD FROM USER_LOG WHERE USER_ID = ? ORDER BY ID DESC LIMIT 1', (session_id))
-        event_id = conn.fetchone()[0]
-
-    #print(conn, event_id, session_id, user_id, "1.0",message_id)
-    with conn:
-        js = Get_Event_by_ID(conn, event_id, session_id, user_id, "1.0",message_id,description2)
-
-    return Response(json.dumps(js,ensure_ascii=False).encode('utf8'))
+    #Формируем и возвращаемся Алисе JSON Respone. Ищем в BD event_id пользователя
+    js = Generate_Response_JSON(RequestDict,description,options)
+    conn.commit()
+    conn.close()
+    return Response(json.dumps(js,ensure_ascii=False).encode('utf-8'))
 
 if __name__ == '__main__':
 

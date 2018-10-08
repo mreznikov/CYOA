@@ -19,14 +19,14 @@ def PrintEnemiesSQL(file):
         stamina=match[0]
         mastery=match[1]
         sql='INSERT INTO ENEMIES VALUES('+str(id)+',"'+name+'",'+stamina+','+mastery+',0);'
-        print(sql)
+        #print(sql)
         id = id + 1
     file.close()
 
 #file = open(r'C:\\Users\\miloslav\\PycharmProjects\CYOA\\podzemelye_chernogo_zamka_source.txt', 'r',encoding='UTF-8')
 #PrintEnemiesSQL(file)
 
-tree = ET.parse(r'C:\\Users\\miloslav\\PycharmProjects\CYOA\\gamebook.xml')
+tree = ET.parse(r'C:\\Users\\mika\\PycharmProjects\\CYOA\\gamebook.xml')
 book = tree.getroot()
 events = {}
 item_lst = []
@@ -116,4 +116,4 @@ for d in events_lst:
    # print(d['option.item'])
    # print(d['description'])
 
-    print('INSERT INTO EVENTS VALUES("'+d['id']+'","'+d['option']+'","'+d['spell']+'","'+d['option.item']+'","'+d['description']+'");')
+    print('INSERT INTO EVENTS VALUES("'+d['id']+'","'+d['option']+'","'+d['spell']+'","'+d['option.item']+'","'+d['description']+'","''");')
