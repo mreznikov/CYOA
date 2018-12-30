@@ -1,4 +1,5 @@
 # coding: utf-8
+from __future__ import unicode_literals
 from API import *
 from flask import Flask
 from flask import Response
@@ -6,6 +7,10 @@ from flask import request
 import logging
 from logging.handlers import RotatingFileHandler
 import json
+import re
+import sys
+import codecs
+
 
 from flask import jsonify
 
@@ -40,11 +45,12 @@ def main():
 
     # Проверяем качество запроса пользователя
     response = RequestQualityCheck(conn,request)
-
+    if request.json['request']['command'] == u"повторить" or request.json['request']['command'] == u"Повторить":
+        RequestDict['event_id']=response
+        response=None
     # Логируем действия пользователя
 
-    c.execute('''INSERT INTO USER_LOG (USER_ID,USER_DECISION) VALUES (?,?)''',
-              (RequestDict["session_id"], RequestDict["event_id"]))
+    WriteLog(RequestDict["session_id"], RequestDict["event_id"],response,c,RequestDict["user_id"])
 
     # Получаем текст и опции
     if response is None:
@@ -54,9 +60,17 @@ def main():
 
     #Формируем и возвращаемся Алисе JSON Respone. Ищем в BD event_id пользователя
     js = Generate_Response_JSON(RequestDict,description,options)
+    print(js)
     conn.commit()
     conn.close()
-    return Response(json.dumps(js,ensure_ascii=False).encode('utf-8'))
+
+    #jsonString= getStringWithDecodedUnicode(js)
+
+    #return Response(jsonString)
+    #return Response(json.dumps(js, ensure_ascii=False, indent=2))#.encode('utf-8'))
+    return json.dumps(js, ensure_ascii=False, indent=2).encode('utf-8')
+
+
 
 if __name__ == '__main__':
 
@@ -72,3 +86,5 @@ if __name__ == '__main__':
     app.logger.addHandler(logHandler)
 
     app.run()
+
+

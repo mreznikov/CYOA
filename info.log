@@ -1,17 +1,19 @@
 Exception on / [POST]
 Traceback (most recent call last):
-  File "C:\Users\mika\AppData\Local\Programs\Python\Python37\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+  File "C:\Users\miloslav\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
-  File "C:\Users\mika\AppData\Local\Programs\Python\Python37\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+  File "C:\Users\miloslav\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
     rv = self.handle_user_exception(e)
-  File "C:\Users\mika\AppData\Local\Programs\Python\Python37\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+  File "C:\Users\miloslav\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
     reraise(exc_type, exc_value, tb)
-  File "C:\Users\mika\AppData\Local\Programs\Python\Python37\lib\site-packages\flask\_compat.py", line 33, in reraise
+  File "C:\Users\miloslav\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 33, in reraise
     raise value
-  File "C:\Users\mika\AppData\Local\Programs\Python\Python37\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+  File "C:\Users\miloslav\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
     rv = self.dispatch_request()
-  File "C:\Users\mika\AppData\Local\Programs\Python\Python37\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+  File "C:\Users\miloslav\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1598, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:/Users/mika/PycharmProjects/CYOA/app.py", line 56, in main
-    conn.commit()
-sqlite3.OperationalError: database is locked
+  File "C:/Users/miloslav/PycharmProjects/CYOA/app.py", line 53, in main
+    WriteLog(RequestDict["session_id"], RequestDict["event_id"],response,c,RequestDict["user_id"])
+  File "C:\Users\miloslav\PycharmProjects\CYOA\API.py", line 206, in WriteLog
+    (session_id, USER_DECISION, "0",USER_ID,dec_datetime))
+sqlite3.OperationalError: 5 values for 4 columns

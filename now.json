@@ -1,0 +1,11 @@
+{
+    "version": 2,
+    "name": "monorepo",
+    "builds": [
+        { "src": "api/python/*.py", "use": "@now/python", "config": {   "maxLambdaSize": "50mb" }}
+    ],
+    "routes": [
+        { "src": "/api/(.*)", "dest": "/api/$1" },
+        { "src": "/(.*)", "dest": "/www/$1" }
+    ]
+}

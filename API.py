@@ -1,10 +1,17 @@
-# encoding=utf8  
+# coding: utf-8
+from __future__ import unicode_literals
+
 
 import logging
 from flask import Flask, request
 
 import sqlite3
 from sqlite3 import Error
+
+import time
+import re
+
+import codecs
 
 app = Flask(__name__)
 logging.basicConfig(level=logging.DEBUG)
@@ -14,6 +21,8 @@ sessionStorage = {}
 
 def RequestQualityCheck(conn,request):
     command = request.json['request']['command']
+    session_id = request.json['session']['session_id']
+    user_id=request.json['session']['user_id']
     command_number = None
     response_id = None
     cur = conn.cursor()
@@ -31,19 +40,27 @@ def RequestQualityCheck(conn,request):
         cur.execute(query)
         rows = cur.fetchall()
         max_event_id = rows[0][0]
-        if command_number > max_event_id or command_number < 0:
+        if val > max_event_id or val < 0:
             response_id="1"
+        if command[0] == "0":
+          response_id = "2"
 
     if command_number is False:
-        if command != u"Далее" and command != u"далее" and command != "test" and command !="":
+        if command != u"Далее" and command != u"далее" and command != "test" and command !="" and command !="Повторить" and command !="повторить":
             response_id="2"
+        elif command == u"Повторить" or command == u"повторить":
+            response_id="3"
+
 
 
     if response_id is None:
         return None
     else:
         #Получаем текст для Response из BD
-        query = 'SELECT DESCRIPTION FROM OPTIONAL_RESPONSES WHERE ID=' + response_id
+        if response_id=="3": # если пользователь просит повторить
+            query ='SELECT USER_DECISION FROM USER_LOG WHERE correct_event_id=1 and USER_ID="'+user_id+'" and SESSION_ID="' + session_id +'" ORDER BY ID DESC LIMIT 1'
+        else:
+            query = 'SELECT DESCRIPTION FROM OPTIONAL_RESPONSES WHERE ID=' + response_id
         cur.execute(query)
         rows = cur.fetchall()
         response = rows[0][0]
@@ -77,13 +94,25 @@ def Get_Request(conn,request):
     if message_id == 1:
         event_id = "1"
 
-    if event_id == u'далее' or event_id == u'Далее':
+    if request.json['request']['command'] == u'далее' or request.json['request']['command'] == u'Далее':
         cur = conn.cursor()
-        query = 'SELECT USER_DECISION FROM USER_LOG WHERE USER_ID = "' + session_id + '" ORDER BY ID DESC'
+        query = 'SELECT USER_DECISION FROM USER_LOG WHERE SESSION_Id = "' + session_id + '" ORDER BY ID DESC'
         cur.execute(query)
         rows = cur.fetchall()
         event_id = rows[0][0]
         description2 = 1
+
+    if request.json['request']['command'] == u'Повторить' or request.json['request']['command'] == u'повторить':
+        cur = conn.cursor()
+        query = 'SELECT USER_DECISION FROM(SELECT *, CAST(USER_DECISION as integer) as nottext FROM  USER_LOG WHERE SESSION_Id = "' + session_id + '" and nottext <> 0  ORDER BY ID DESC)'
+
+        cur.execute(query)
+        rows = cur.fetchall()
+        if cur.rowcount == 1:
+            event_id = 1
+        else:
+            event_id = rows[1][0]
+        description2 = 0
 
     JsonDict =	{
       "event_id": event_id,
@@ -111,14 +140,12 @@ def create_connection(db_file):
 
 def Generate_Response_JSON( ResponseDict,description,options):
 
-
-
     buttons = []
 
     js = {}
 
     for option in options:
-        button = {"title": option, "hide": "true"}
+        button = {"title": option, "hide": True}
         buttons.append(button)
 
 
@@ -135,6 +162,7 @@ def Generate_Response_JSON( ResponseDict,description,options):
         },
         "version": ResponseDict["version"]
     }
+
     return js
 
 
@@ -163,6 +191,7 @@ def Get_Event_by_ID(conn,ResponseDict):
             options.append("Далее")
             break
         options.append(row[1])
+    options.append("Повторить")
 
     if len(rows) == 0:
         text = ""
@@ -173,6 +202,20 @@ def Get_Event_by_ID(conn,ResponseDict):
 
     return text,options
 
+def WriteLog(session_id,USER_DECISION,response,connection,USER_ID):
+    correct_used_id=""
+
+  #  now = time.strftime("%c")
+    ## date and time representation
+    #print
+    #"Current date & time " + time.strftime("%c")
+    dec_datetime = time.strftime("%c")
+    if response is None:
+        connection.execute('''INSERT INTO USER_LOG (SESSION_ID,USER_DECISION,correct_event_id,USER_ID,dec_datetime) VALUES (?,?,?,?,?)''',
+                  (session_id, USER_DECISION, "1", USER_ID, dec_datetime))
+    else:
+        connection.execute('''INSERT INTO USER_LOG (SESSION_ID,USER_DECISION,correct_event_id,USER_ID,dec_datetime) VALUES (?,?,?,?,?)''',
+                  (session_id, USER_DECISION, "0", USER_ID, dec_datetime))
 
 #def main():
     #
@@ -207,3 +250,11 @@ def Get_Event_by_ID(conn,ResponseDict):
 
 # if __name__ == '__main__':
 #     main()
+
+def getStringWithDecodedUnicode(value):
+    findUnicodeRE = re.compile('\\\\u([\da-f]{4})')
+
+    def getParsedUnicode(x):
+        return chr(int(x.group(1), 16))
+
+    return findUnicodeRE.sub(getParsedUnicode, str(value))
